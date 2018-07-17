@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person';
-import './Person/Person.css'
+import './Person/Person.css';
 
 class App extends Component {
 
@@ -11,8 +11,15 @@ class App extends Component {
       {name : 'jay', age : 25},
       {name : 'kay', age : 26},
       {name : 'may', age : 29}
-    ]
+    ],
+    otherState : 'other value',
+    showPersons : false
 
+  }
+
+  togglePersonHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({showPersons: !doesShow})
   }
 
   changeNameHandler = (newName) => {
@@ -52,11 +59,21 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className="App-title">REACT BASICS</h1>
+        
+        {
+          this.state.showPersons ? 
+        <div>
+
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
         <Person click = {this.changeNameHandler.bind(this, 'jaysolanki')} name={this.state.persons[1].name} age={this.state.persons[1].age} changed = {this.nameHandler}> -  I am an investment banker</Person>
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
+        </div>
+        : null
+        }
         <br/>
-        <button style = {style} onClick={(event) => this.changeNameHandler('jaysahani')}>Change Name</button>
+        {/* <button style = {style} onClick={(event) => this.changeNameHandler('jaysahani')}>Change Name</button> */}
+        <button style = {style} onClick={this.togglePersonHandler}>Change Name</button>
+       
        </div>
     );
 
