@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
 import './Person/Person.css';
+import Radium, {StyleRoot} from 'radium';
 
 class App extends Component {
 
@@ -72,16 +73,22 @@ class App extends Component {
   render() {
 
     const style = {
-      backgroundcolor : 'white',
+      backgroundColor : 'green',
+      color : 'white',
       font : 'inherit',
       border : '1px solid black',
       padding : '8px',
-      cursor : 'pointer '
+      cursor : 'pointer ',
+      ':hover' : {
+        backgroundColor : 'lightgreen',
+        color : 'black'
+      }
     }
 
     let persons = null;
 
     if(this.state.showPersons){
+
       persons = ( 
       
       <div>
@@ -97,12 +104,29 @@ class App extends Component {
         <Person click = {this.changeNameHandler.bind(this, 'jaysolanki')} name={this.state.persons[1].name} age={this.state.persons[1].age} changed = {this.nameHandler}> -  I am an investment banker</Person>
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/> */}
         </div>);
-               
+           
+           style.backgroundColor = 'red';
+           style[':hover'] = {
+             backgroundColor : 'yellow',
+             color : 'black'
+           } 
+    }
+
+    // let classes = ['red', 'italic'].join(' ');
+    const classes = [];
+
+    if(this.state.persons.length <= 2){
+      classes.push('red');
+    }
+    if(this.state.persons.length <=1){
+      classes.push('bold');
     }
 
     return (
+      <StyleRoot>
       <div className="App">
         <h1 className="App-title">REACT BASICS</h1>
+        <p className={classes.join(' ')}>Is it working?</p>
         {persons}
         
           <br/>
@@ -110,12 +134,13 @@ class App extends Component {
         <button style = {style} onClick={this.togglePersonHandler}>Change Name</button>
        
        </div>
+       </StyleRoot>
     );
 
     // return React.createElement('div', {className : 'App'} , React.createElement('h1', null, 'i am a react developer'));
   }
 }
 
-export default App;
+export default Radium(App);
 
 
