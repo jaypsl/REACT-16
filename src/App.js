@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
 import './Person/Person.css';
-import Radium, {StyleRoot} from 'radium';
+// import Radium, {StyleRoot} from 'radium';
 
 class App extends Component {
 
@@ -123,7 +123,7 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
+      // <StyleRoot>
       <div className="App">
         <h1 className="App-title">REACT BASICS</h1>
         <p className={classes.join(' ')}>Is it working?</p>
@@ -134,13 +134,14 @@ class App extends Component {
         <button style = {style} onClick={this.togglePersonHandler}>Change Name</button>
        
        </div>
-       </StyleRoot>
+      //   </StyleRoot> 
+
     );
 
     // return React.createElement('div', {className : 'App'} , React.createElement('h1', null, 'i am a react developer'));
   }
 }
 
-export default Radium(App);
-
+// export default Radium(App);
+export default App;
 
